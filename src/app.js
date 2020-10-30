@@ -1,25 +1,25 @@
 const express = require("express");
 const cors = require("cors");
 const { uuid } = require('uuidv4'); 
-
-const { v4: uuid, validate: isUuid } = require('uuid');
-
+//const { v4: uuid, validate: isUuid } = require('uuid');
 const app = express();
+
+
 
 app.use(express.json());
 app.use(cors());
 
 const repositories = [];
 
-function validateRepositorieId(request, response, next) {
-  const { id } = request.params; 
+const validateId = (req, resp, next) => {
+  const { id } = req.params
+  const repositoryIndex = repositories.findIndex(repository => repository.id === id)
 
-  if(!isUuid(id)){
-    return response.status(400).json({ error: 'Invalid Repository Id'}); 
+  if (repositoryIndex < 0){
+    return resp.status(400).json({error: "Repository not found"})
   }
-
-  return next();
-}; 
+  next()
+}
 
 app.get("/repositories", (request, response) => {
   const { id, title, url, techs, likes } = request.query; 
