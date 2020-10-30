@@ -22,7 +22,7 @@ app.post("/repositories", (request, response) => {
   const repository = {
    id: uuid(),
    title, 
-   url, 
+   url: 'https://github.com/henriquecmachado/conceitos-nodejs', 
    techs, 
    likes: 0, 
   }; 
