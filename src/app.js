@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { uuid } = require('uuidv4'); 
 
-// const { v4: uuid, validate: isUuid } = require('uuid');
+const { v4: uuid, validate: isUuid } = require('uuid');
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.post("/repositories", (request, response) => {
   const repository = {
    id: uuid(),
    title, 
-   url: 'https://github.com/henriquecmachado/conceitos-nodejs', 
+   url, 
    techs, 
    likes: 0, 
   }; 
